@@ -38,8 +38,25 @@ footer {
     padding: 20px;
 }
 
+.btn-pedir {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-pedir:hover {
+    background: #444;
+}
+
+
+
+
 @media (max-width: 600px) {
     .tarjeta {
         width: 100%;
     }
 }
+
