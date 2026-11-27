@@ -12,31 +12,23 @@
         <h1>Dupe Decant</h1></header>
     <main>
         <h2>Catálogo</h2>
-        <section class="catalogo">
-            <article class="tarjeta">
-                <h3>Black Opium </h3> 
-                <p>Yves Saint Laurent</p>
-                <button class="btn-pedir" data-precio = "50">Pedir</button>
-            </article>
-            <article class="tarjeta">
-                <h3>Najim </h3> 
-                <p>Versace</p>
-                <button class="btn-pedir" data-precio = "50">Pedir</button>
-            </article>
-            <article class="tarjeta">
-                <h3>La Bomba </h3> 
-                <p>Carolina Herrera</p>
-                <button class="btn-pedir" data-precio = "35">Pedir</button>
-            </article>
-            <article class="tarjeta">
-                <h3>Light Blue </h3> 
-                <p>Dolce &amp; Gabbana</p>
-                <button class="btn-pedir" data-precio = "25">Pedir</button>
-            </article>
-        </section>
+        <section class="catalogo" id="catalogo"></section>
         <h2>Tu pedido</h2>
         <ul id="lista-pedido"></ul>
         <p id="total">Total: Q0</p>
+        <section id="datos-cliente">
+            <h3>Tus Datos</h3>
+            <input type="text" id="nombre-cliente" placeholder="Tu nombre">
+            <input type="tel" id="telefono-cliente" placeholder="Tu teléfono">
+            <select id="modalidad">
+                <option value="entrega">Entrega a domicilio</option>
+                <option value="recoger">Paso a recoger</option>
+            </select>
+            <input type="text" id="zona-cliente" placeholder="Zona o dirección de entrega">
+            <textarea id="notas-cliente" placeholder = "Notas (opcional)"></textarea>
+            <p class="aviso-pago">El pago se hace al recibir o al recoger tu pedido. No se cobra nada en esta página.</p>
+        </section>
+        <button id="enviar">Enviar pedido por WhatsApp</button>
         <button id="vaciar">Vaciar pedido</button>
     </main>
 
