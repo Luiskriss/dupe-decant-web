@@ -92,21 +92,39 @@ function actualizarZona(){
     });
 
 
-async function cargarCatalogo() {
-    const resFrag = await fetch("http://localhost:3000/api/fragancias");
-    const fragancias = await resFrag.json();
-    const resEnv = await fetch("http://localhost:3000/api/envases");
-    const envases = await resEnv.json();
+const buscador = document.getElementById("buscador");
+const sinResultados = document.getElementById("sin-resultados");
 
-    fragancias.forEach(function (f) {
+let todasLasFragancias = [];
+let todosLosEnvases = [];
+
+function normalizar(texto) {
+    return texto
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
+
+function dibujarCatalogo() {
+    const busqueda = normalizar(buscador.value.trim());
+    catalogo.innerHTML = "";
+
+    const visibles = todasLasFragancias.filter(function (f) {
+        const texto = normalizar(f.nombre_frgancia + " " + f.marca_fragancia);
+        return texto.includes(busqueda);
+    });
+
+    sinResultados.style.display = visibles.length === 0 ? "block" : "none";
+
+    visibles.forEach(function (f) {
         const tarjeta = document.createElement("article");
         tarjeta.className = "tarjeta";
         tarjeta.innerHTML = 
-            "<h3>" + f.nombre_fragancia + "</h3>" +
+            "<h3>" + f.nombre_fragancia + "<h3>" + 
             "<p>Marca: " + f.marca_fragancia + "</p>";
 
         const selector = document.createElement("select");
-        envases.forEach(function (e, indice) {
+        todosLosEnvases.forEach(function (e, indice) {
             const opcion = document.createElement("option");
             opcion.value = indice;
             opcion.textContent = e.dimension_envases + " ml - Q" + e.precio;
@@ -117,10 +135,11 @@ async function cargarCatalogo() {
         boton.className = "btn-pedir";
         boton.textContent = "Pedir";
         boton.addEventListener("click", function () {
-            const envase = envases[selector.value];
+            const envase = todosLosEnvases[selector.value];
             agregarAlPedido(
-                f.nombre_fragancia + " " + envase.dimension_envases + " ml",
+                f.nombre_fragancia = " " + envase.dimension_envases + " ml",
                 Number(envase.precio)
+    
             );
         });
 
@@ -128,7 +147,18 @@ async function cargarCatalogo() {
         tarjeta.appendChild(boton);
         catalogo.appendChild(tarjeta);
     });
+
 }
+
+async function cargarCatalogo() {
+    const resFrag = await fetch("http://localhost:3000/api/fragancias");
+    todasLasFragancias = await resFrag.json();
+    const resEnv = await fetch("http://localhost:3000/api/envases");
+    todosLosEnvases = await resEnv.json();
+    dibujarCatalogo();
+}
+
+buscador.addEventListener("input", dibujarCatalogo);
 
 botonVaciar.addEventListener("click", function () {
     pedido = {};

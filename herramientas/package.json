@@ -1,0 +1,9 @@
+{
+  "name": "herramientas-dupe-decant",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Herramientas para preparar las fotos del catálogo",
+  "dependencies": {
+    "sharp": "^0.34.0"
+  }
+}

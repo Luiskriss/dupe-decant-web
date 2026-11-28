@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo | Dupe Decant</title>
+  <meta name="description" content="Catálogo de decants: fragancias para mujer, hombre y unisex. Busca por nombre o marca y arma tu pedido.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23cfb07a'/%3E%3Ctext x='16' y='24' font-size='22' text-anchor='middle' fill='%232b2926' font-family='Georgia'%3ED%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="carrito.js" defer></script>
+  <script src="catalogo.js" defer></script>
+</head>
+<body>
+
+  <header class="encabezado">
+    <div class="encabezado-interior">
+      <a href="index.html" class="logo">Dupe <span>Decant</span></a>
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html" aria-current="page">Catálogo</a>
+      </nav>
+      <a href="pedido.html" class="carrito-enlace" aria-label="Ver mi carrito">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/>
+          <path d="M2 3h3l2.7 12.4a1 1 0 0 0 1 .8h9.6a1 1 0 0 0 1-.8L21 7H6"/>
+        </svg>
+        <span id="carrito-contador" class="carrito-contador" hidden>0</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="contenedor" id="zona-catalogo">
+
+    <div class="pagina-titulo">
+      <h1>Catálogo</h1>
+      <p>Elige tu fragancia y la presentación que prefieras.</p>
+    </div>
+
+    <!-- Buscador y categorías: se quedan fijos arriba al bajar -->
+    <div class="barra-catalogo">
+      <input type="search" id="buscador" placeholder="Buscar por nombre o marca..." autocomplete="off" aria-label="Buscar fragancia">
+      <div class="pestanas" id="pestanas">
+        <button class="pestana activa" data-categoria="todos">Todos</button>
+        <button class="pestana" data-categoria="mujer">Mujer</button>
+        <button class="pestana" data-categoria="hombre">Hombre</button>
+        <button class="pestana" data-categoria="unisex">Unisex</button>
+        <button class="pestana" data-categoria="ofertas">Ofertas</button>
+      </div>
+    </div>
+
+    <div class="filtros-uso" id="filtros-uso">
+      <span class="etiqueta">Ideal para:</span>
+      <button class="filtro activo" data-uso="todos">Todo el año</button>
+      <button class="filtro" data-uso="frio">Clima frío</button>
+      <button class="filtro" data-uso="calor">Clima cálido</button>
+    </div>
+
+    <p id="contador-resultados" aria-live="polite"></p>
+
+    <section class="rejilla" id="catalogo">
+      <p class="mensaje-estado">Cargando catálogo...</p>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <p>© Dupe Decant · Decants de fragancias en Guatemala</p>
+    <p>Los pedidos están sujetos a disponibilidad. Te confirmo por WhatsApp y, si algo está agotado, te recomiendo una fragancia similar.</p>
+  </footer>
+
+</body>
+</html>

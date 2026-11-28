@@ -16,7 +16,7 @@ const pool = new Pool ({
 
 app.get("/api/fragancias", async function (req, res) {
     try {
-        const resultado = await pool.query("SELECT id_fragancia, nombre_fragancia, marca_fragancia FROM fragancias ORDER BY id_fragancia");
+        const resultado = await pool.query("SELECT id_fragancia, nombre_fragancia, marca_fragancia, clasificacion, tipo_uso, en_oferta, descuento_pct FROM fragancias ORDER BY nombre_fragancia");
         res.json(resultado.rows);
     } catch (error) {
         console.error("Error al obtener las fragancias:", error);
